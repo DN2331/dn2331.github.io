@@ -95,51 +95,34 @@
 <p>All nodes are open for peering ( only support <code>Wireguard</code> ), you can find me from the <a href="https://t.me/Dn42Chat">DN42 Group Chat (unofficial)</a> in Telegram.</p>
 <p>I prefer <code>multiprotocol</code> BGP sessions over IPv6. For WireGuard + BIRD users, I recommend using <code>link-local</code> IPv6 addresses, and enable the <code>extended next hop</code> option for IPv4.</p>
 <h2 id="nodes">Nodes</h2>
-<table>
-<thead>
-<tr>
-<th>Domain</th>
-<th>Clearnet IPv6</th>
-<th>Location</th>
-<th>Wireguard Pubkey</th>
-<th>DN42 IPv4</th>
-<th>DN42 IPv6</th>
-<th>Link-Local IPv6</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>tw201.dn42.williamgates.info</td>
-<td>no</td>
-<td>Taipei</td>
-<td>D9O5wPiRVFUAZzqVJlfpNONAEEy/Ljj8vw5L6PXUpBo=</td>
-<td>172.23.131.201</td>
-<td>fd62:c9e2:af95:201::1</td>
-<td>fe80::2331</td>
-</tr>
-<tr>
-<td>sg206.dn42.williamgates.info</td>
-<td>yes</td>
-<td>Singapore</td>
-<td>I5yRgHFY+qfkRwT6UpVBsUIiA5hmEOv1cU2licfrokw=</td>
-<td>172.23.131.206</td>
-<td>fd62:c9e2:af95:206::1</td>
-<td>fe80::2331</td>
-</tr>
-<tr>
-<td>cz207.dn42.williamgates.info</td>
-<td>yes</td>
-<td>Prague</td>
-<td>22Yg+PozQDDJUufe2POaV/ron0wZ6LVznpMgrRZDAXI=</td>
-<td>172.23.131.207</td>
-<td>fd62:c9e2:af95:207::1</td>
-<td>fe80::2331</td>
-</tr>
-</tbody>
-</table>
-<pre><code>define last5 = int(last 5 digits of your ASN);
-if last5 &lt; 50000 then my_wireguard_port = last5;
-else my_wireguard_port = 30000 + int(last 4 digits of your ASN);
+<h5 id="tw201">tw201</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">Location</span>: <span style="color:#ae81ff">Taipei</span>
+<span style="color:#f92672">Clearnet domain</span>: <span style="color:#ae81ff">tw201.dn42.williamgates.info (IPv4 only) </span>
+<span style="color:#f92672">Wireguard pubkey</span>: <span style="color:#ae81ff">D9O5wPiRVFUAZzqVJlfpNONAEEy/Ljj8vw5L6PXUpBo=</span>
+<span style="color:#f92672">DN42 IPv4</span>: <span style="color:#ae81ff">172.23.131.201</span>
+<span style="color:#f92672">DN42 IPv6</span>: <span style="color:#ae81ff">fd62:c9e2:af95:201::1</span>
+<span style="color:#f92672">Link-local IPv6</span>: <span style="color:#ae81ff">fe80::2331/64</span>
+</code></pre></div><h5 id="sg206">sg206</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">Location</span>: <span style="color:#ae81ff">Singapore</span>
+<span style="color:#f92672">Clearnet domain</span>: <span style="color:#ae81ff">sg206.dn42.williamgates.info (IPv4/IPv6)</span>
+<span style="color:#f92672">Wireguard pubkey</span>: <span style="color:#ae81ff">I5yRgHFY+qfkRwT6UpVBsUIiA5hmEOv1cU2licfrokw=</span>
+<span style="color:#f92672">DN42 IPv4</span>: <span style="color:#ae81ff">172.23.131.206</span>
+<span style="color:#f92672">DN42 IPv6</span>: <span style="color:#ae81ff">fd62:c9e2:af95:206::1</span>
+<span style="color:#f92672">Link-local IPv6</span>: <span style="color:#ae81ff">fe80::2331/64</span>
+</code></pre></div><h5 id="cz207">cz207</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">Location</span>: <span style="color:#ae81ff">Prague</span>
+<span style="color:#f92672">Clearnet domain</span>: <span style="color:#ae81ff">cz207.dn42.williamgates.info (IPv4/IPv6)</span>
+<span style="color:#f92672">Wireguard pubkey</span>: <span style="color:#ae81ff">22Yg+PozQDDJUufe2POaV/ron0wZ6LVznpMgrRZDAXI=</span>
+<span style="color:#f92672">DN42 IPv4</span>: <span style="color:#ae81ff">172.23.131.207</span>
+<span style="color:#f92672">DN42 IPv6</span>: <span style="color:#ae81ff">fd62:c9e2:af95:207::1</span>
+<span style="color:#f92672">Link-local IPv6</span>: <span style="color:#ae81ff">fe80::2331/64</span>
+</code></pre></div><h2 id="wireguard-port-on-my-side">Wireguard port on my side</h2>
+<pre><code class="language-clike" data-lang="clike">if int(last_5_digits_of_your_ASN) &lt; 50000 then {
+	my_wireguard_port = int(last_5_digits_of_your_ASN);
+};
+else {
+	my_wireguard_port = 30000 + int(last_4_digits_of_your_ASN);
+};
 </code></pre>
     </div>
   
