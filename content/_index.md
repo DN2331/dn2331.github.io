@@ -11,16 +11,49 @@ All nodes are open for peering ( only support `Wireguard` ), you can find me fro
 I prefer `multiprotocol` BGP sessions over IPv6. For WireGuard + BIRD users, I recommend using `link-local` IPv6 addresses, and enable the `extended next hop` option for IPv4.
 
 ## Nodes
-|Domain|Clearnet IPv6|Location|Wireguard Pubkey|DN42 IPv4|DN42 IPv6|Link-Local IPv6|
-|------|-------------|--------|----------------|---------|---------|---------------|
-|tw201.dn42.williamgates.info|no|Taipei|D9O5wPiRVFUAZzqVJlfpNONAEEy/Ljj8vw5L6PXUpBo=|172.23.131.201|fd62:c9e2:af95:201::1|fe80::2331| 
-|sg206.dn42.williamgates.info|yes|Singapore|I5yRgHFY+qfkRwT6UpVBsUIiA5hmEOv1cU2licfrokw=|172.23.131.206|fd62:c9e2:af95:206::1|fe80::2331|
-|cz207.dn42.williamgates.info|yes|Prague|22Yg+PozQDDJUufe2POaV/ron0wZ6LVznpMgrRZDAXI=|172.23.131.207|fd62:c9e2:af95:207::1|fe80::2331|
 
+##### tw201
+
+```yaml
+Location: Taipei
+Clearnet domain: tw201.dn42.williamgates.info (IPv4 only) 
+Wireguard pubkey: D9O5wPiRVFUAZzqVJlfpNONAEEy/Ljj8vw5L6PXUpBo=
+DN42 IPv4: 172.23.131.201
+DN42 IPv6: fd62:c9e2:af95:201::1
+Link-local IPv6: fe80::2331/64
 ```
-define last5 = int(last 5 digits of your ASN);
-if last5 < 50000 then my_wireguard_port = last5;
-else my_wireguard_port = 30000 + int(last 4 digits of your ASN);
+
+##### sg206
+
+```yaml
+Location: Singapore
+Clearnet domain: sg206.dn42.williamgates.info (IPv4/IPv6)
+Wireguard pubkey: I5yRgHFY+qfkRwT6UpVBsUIiA5hmEOv1cU2licfrokw=
+DN42 IPv4: 172.23.131.206
+DN42 IPv6: fd62:c9e2:af95:206::1
+Link-local IPv6: fe80::2331/64
+```
+
+##### cz207
+
+```yaml
+Location: Prague
+Clearnet domain: cz207.dn42.williamgates.info (IPv4/IPv6)
+Wireguard pubkey: 22Yg+PozQDDJUufe2POaV/ron0wZ6LVznpMgrRZDAXI=
+DN42 IPv4: 172.23.131.207
+DN42 IPv6: fd62:c9e2:af95:207::1
+Link-local IPv6: fe80::2331/64
+```
+
+## Wireguard port on my side
+
+```clike
+if int(last_5_digits_of_your_ASN) < 50000 then {
+	my_wireguard_port = int(last_5_digits_of_your_ASN);
+};
+else {
+	my_wireguard_port = 30000 + int(last_4_digits_of_your_ASN);
+};
 ```
 
 
