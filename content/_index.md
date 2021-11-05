@@ -44,6 +44,25 @@ DN42 IPv4: 172.23.131.207
 DN42 IPv6: fd62:c9e2:af95:207::1
 Link-local IPv6: fe80::2331/64
 ```
+##### lu208
+```yaml
+Location: Luxembourg
+Clearnet domain: lu208.dn42.williamgates.info (IPv4/IPv6)
+Wireguard pubkey: c4AZZVNUzXCASWG96CKUpY+gQLdGwA1rbqkYCHXnW10=
+DN42 IPv4: 172.23.131.208
+DN42 IPv6: fd62:c9e2:af95:208::1
+Link-local IPv6: fe80::2331/64
+```
+
+##### md209
+```yaml
+Location: Chisinau
+Clearnet domain: md209.dn42.williamgates.info (IPv4/IPv6)
+Wireguard pubkey: 09NtkFC0eK5mYUkL9jpJ3zv1sTeMyVWdVymZ5L17Mmc=
+DN42 IPv4: 172.23.131.209
+DN42 IPv6: fd62:c9e2:af95:209::1
+Link-local IPv6: fe80::2331/64
+```
 
 ## Wireguard port on my side
 
