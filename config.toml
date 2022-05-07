@@ -7,4 +7,4 @@ theme = "terminal"
 
   fullWidthTheme = true
   centerTheme = true
-  themeColor = "green"
+  themeColor = "blue"
